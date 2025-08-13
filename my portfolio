@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Julius Kwofie | Portfolio</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    :root {
+      --primary: #1769aa;
+      --accent: #e3f0ff;
+      --white: #fff;
+      --shadow: 0 2px 16px #c6e4ff70;
+      --radius: 14px;
+      --nav-bg: #f5faffc7;
+    }
+    body {
+      background: linear-gradient(135deg, #e3f0ff 0%, #ffffff 100%);
+      min-height: 100vh;
+      margin: 0;
+      font-family: 'Segoe UI', 'Arial', sans-serif;
+      color: #18314f;
+    }
+    .container { width: 90%; max-width: 1200px; margin: 0 auto; }
+    nav {
+      background: var(--nav-bg);
+      box-shadow: var(--shadow);
+      position: sticky;
+      top: 0;
+      z-index: 99;
+      border-radius: 0 0 var(--radius) var(--radius);
+      margin-bottom: 18px;
+    }
+    .nav-content { display: flex; align-items: center; justify-content: space-between; padding: 12px 0; }
+    .logo {
+      font-size: 1.4rem;
+      color: var(--primary);
+      font-weight: bold;
+      letter-spacing: 1.5px;
+    }
+    .nav-links {
+      display: flex;
+      gap: 14px;
+    }
+    .nav-btn {
+      background: linear-gradient(90deg, var(--primary) 70%, #1993e4 100%);
+      color: var(--white);
+      text-decoration: none;
+      font-weight: 500;
+      border: none;
+      padding: 10px 20px;
+      border-radius: var(--radius);
+      box-shadow: 0 2px 8px #b5cdfc40;
+      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+      outline: none;
+      cursor: pointer;
+      position: relative;
+      font-size: 1rem;
+    }
+    .nav-btn:hover, .nav-btn.active {
+      background: linear-gradient(90deg, #1993e4 70%, var(--primary) 100%);
+      transform: translateY(-2px) scale(1.04);
+      box-shadow: 0 6px 16px #1769aa22;
+    }
+    .section { display: none; padding: 40px 0 10px 0; }
+    .section.active { display: block; animation: fadeIn 0.7s; }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(32px);}
+      to { opacity: 1; transform: none;}
+    }
+    .hero {
+      text-align: center;
+      padding: 50px 0 30px 0;
+    }
+    .hero h1 {
+      color: var(--primary);
+      font-size: 2.6rem;
+      margin-bottom: 12px;
+      letter-spacing: 1.5px;
+    }
+    .hero-desc {
+      font-size: 1.2rem;
+      color: #444;
+      margin-bottom: 28px;
+    }
+    .cta-btn {
+      background: linear-gradient(90deg, var(--primary) 70%, #1993e4 100%);
+      color: #fff;
+      padding: 13px 34px;
+      font-size: 1.15rem;
+      border: none;
+      border-radius: var(--radius);
+      box-shadow: 0 2px 12px #c6e4ff80;
+      text-decoration: none;
+      font-weight: 600;
+      letter-spacing: 1px;
+      transition: background 0.18s, transform 0.14s;
+      cursor: pointer;
+      margin-top: 8px;
+      display: inline-block;
+    }
+    .cta-btn:hover {
+      background: linear-gradient(90deg, #1993e4 70%, var(--primary) 100%);
+      transform: scale(1.06);
+    }
+    h2 {
+      color: var(--primary);
+      font-size: 2rem;
+      margin-bottom: 18px;
+    }
+    h3 { color: #1769aa; margin-top: 22px;}
+    .personal-info ul {
+      list-style: none;
+      padding: 0;
+      margin: 10px 0 0 0;
+      font-size: 1.1rem;
+    }
+    .personal-info li { margin-bottom: 7px;}
+    .projects-list { display: flex; gap: 26px; flex-wrap: wrap;}
+    .project-card {
+      background: #fff;
+      border: 2px solid #1769aa33;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 20px 24px;
+      flex-basis: 300px;
+      margin-bottom: 16px;
+      transition: box-shadow 0.2s, transform 0.15s;
+    }
+    .project-card:hover {
+      box-shadow: 0 6px 28px #1769aa18;
+      transform: translateY(-2px) scale(1.03);
+    }
+    .project-card a {
+      color: var(--primary);
+      text-decoration: underline;
+      font-weight: 500;
+    }
+    .media-gallery { display: flex; flex-wrap: wrap; }
+    .media-gallery figure { margin: 10px;}
+    footer {
+      background: var(--nav-bg);
+      text-align: center;
+      padding: 15px 0 10px 0;
+      color: #888;
+      margin-top: 32px;
+      border-radius: var(--radius) var(--radius) 0 0;
+    }
+    @media (max-width: 700px) {
+      .nav-content, .projects-list, .media-gallery { flex-direction: column; align-items: flex-start; }
+      .project-card, .media-gallery figure { width: 100%; max-width: 98vw;}
+      .hero h1 { font-size: 2rem;}
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="container nav-content">
+      <span class="logo">Julius Kwofie</span>
+      <div class="nav-links">
+        <button class="nav-btn active" data-section="home">Home</button>
+        <button class="nav-btn" data-section="about">About</button>
+        <button class="nav-btn" data-section="teaching-philosophy">Teaching Philosophy</button>
+        <button class="nav-btn" data-section="internship-record">Internship Record Book</button>
+        <button class="nav-btn" data-section="reflective-practice">Reflective Practice</button>
+        <button class="nav-btn" data-section="lessons">Lessons</button>
+        <button class="nav-btn" data-section="media">Pictures/Videos</button>
+        <button class="nav-btn" data-section="projects">Projects</button>
+        <button class="nav-btn" data-section="contact">Contact</button>
+      </div>
+    </div>
+  </nav>
+  <main>
+    <!-- HOME/HERO -->
+    <section id="home" class="container section active">
+      <header class="hero">
+        <h1>Hello, I'm Julius Kwofie</h1>
+        <p class="hero-desc">
+          I am a passionate technology enthusiast with a strong commitment to education and knowledge sharing. Known for my kindness and excellent communication skills, I thrive in environments where I can teach, inspire, and collaborate. With a natural ability to connect with others and explain complex concepts clearly, I bring both technical insight and human warmth to every interaction. I am eager to continue growing professionally and contributing meaningfully to academic and technological communities.
+        </p>
+        <a href="#" class="cta-btn" onclick="showSection('projects')">View My Work</a>
+      </header>
+    </section>
+    <!-- ABOUT -->
+    <section id="about" class="container section">
+      <h2>About Me</h2>
+      <p>
+        I am a passionate technology enthusiast with a strong commitment to education and knowledge sharing. Known for my kindness and excellent communication skills, I thrive in environments where I can teach, inspire, and collaborate. With a natural ability to connect with others and explain complex concepts clearly, I bring both technical insight and human warmth to every interaction. I am eager to continue growing professionally and contributing meaningfully to academic and technological communities.
+      </p>
+      <div class="personal-info">
+        <ul>
+          <li><strong>Gender:</strong> MALE</li>
+          <li><strong>Marital Status:</strong> SINGLE</li>
+          <li><strong>Nationality:</strong> GHANAIAN</li>
+          <li><strong>Religion:</strong> CHRISTIANITY</li>
+          <li><strong>Date of Birth:</strong> 4TH NOVEMBER, 2004</li>
+          <li><strong>Place of Birth:</strong> WESTERN REGION</li>
+          <li><strong>Languages Spoken:</strong> ENGLISH LANGUAGE AND FANTE</li>
+          <li><strong>Mobile Contacts:</strong> +233 0541264602</li>
+          <li><strong>E-mail Address:</strong> <a href="mailto:juliuskwofie1234@gmail.com">juliuskwofie1234@gmail.com</a></li>
+        </ul>
+      </div>
+    </section>
+    <!-- TEACHING PHILOSOPHY -->
+    <section id="teaching-philosophy" class="container section">
+      <h2>Teaching Philosophy</h2>
+      <p>
+        The teacher should not be the one to stand in front of the classroom giving out information to be absorbed by passive learners; instead, the teacher’s role should be that of a facilitator and guide. With reference to the above statements and my experience during the internship program, my philosophy of teaching, therefore, is: <strong>“students are the members of a learning team where teachers are the coaches.”</strong>
+      </p>
+      <p>
+        This means that when students engage in an activity in class, they understand it better than when the teacher dictates to them. With this guiding principle, my goal as a teacher is to create an environment that is interactive and collaborative, which promotes problem-solving and creative thinking to help face real-life challenges.
+      </p>
+      <p>
+        To achieve this, I always act as a facilitator in providing access to information rather than acting as a primary source of information. When students are given access and hands-on activities and allowed time and space to use materials that reinforce the lesson being studied, it creates an opportunity for individual discovery and construction of knowledge to occur.
+      </p>
+      <p>
+        My philosophy guided and influenced my lesson preparation and delivery during my internship at Methodist Senior High School.
+      </p>
+    </section>
+    <!-- INTERNSHIP RECORD -->
+    <section id="internship-record" class="container section">
+      <h2>Internship Record Book</h2>
+      <p>
+        Documenting my hands-on experiences and growth throughout my internship journey, including key projects, skills developed, and reflections.
+      </p>
+    </section>
+    <!-- REFLECTIVE PRACTICE -->
+    <section id="reflective-practice" class="container section">
+      <h2>Reflective Practice</h2>
+      <p>
+        This document consists of a lesson of my teaching experience during my internship program at Methodist Senior High School, supervised by Dr. Joscal Dagadu. It comprises the preparation of the lesson, delivery, strengths, weaknesses, challenges faced, innovative measures, and insights gained from the lesson.
+      </p>
+      <table style="width:100%;border-collapse:collapse;margin-bottom:18px;">
+        <tr style="background:#b71c3a;color:#fff;font-weight:bold;"><td style="padding:8px;">Name of School</td><td style="padding:8px;">Methodist Senior High School</td></tr>
+        <tr style="background:#e9cfd3;"><td style="padding:8px;">Department</td><td style="padding:8px;">Mathematics Department</td></tr>
+        <tr style="background:#f5ebed;"><td style="padding:8px;">Subject</td><td style="padding:8px;">ICT</td></tr>
+        <tr style="background:#e9cfd3;"><td style="padding:8px;">Topic</td><td style="padding:8px;">Computer Hardware</td></tr>
+        <tr style="background:#f5ebed;"><td style="padding:8px;">Class</td><td style="padding:8px;">2 Science 1</td></tr>
+        <tr style="background:#e9cfd3;"><td style="padding:8px;">Class Size</td><td style="padding:8px;">15</td></tr>
+        <tr style="background:#f5ebed;"><td style="padding:8px;">Date</td><td style="padding:8px;">6th March, 2025</td></tr>
+        <tr style="background:#e9cfd3;"><td style="padding:8px;">Lesson Duration</td><td style="padding:8px;">60 Minutes</td></tr>
+      </table>
+      <h4>Lesson Objectives</h4>
+      <ul>
+        <li>Explain computer hardware</li>
+        <li>Describe the categories of computer hardware</li>
+      </ul>
+      <h4>Teacher Support Materials</h4>
+      <ul>
+        <li>White board</li>
+        <li>Marker</li>
+        <li>Duster</li>
+        <li>ICT Textbook</li>
+      </ul>
+      <h4>Student Support Materials</h4>
+      <ul>
+        <li>Notebook</li>
+        <li>Pen</li>
+      </ul>
+      <h4>Methodology</h4>
+      <p>The teaching techniques used in the lesson delivery were:</p>
+      <ul>
+        <li>Discussion</li>
+        <li>Demonstration</li>
+        <li>Brainstorming</li>
+      </ul>
+      <h4>Strengths</h4>
+      <ul>
+        <li>Communicates at the level of students' understanding</li>
+        <li>Provides immediate and constructive feedback</li>
+        <li>Exhibits knowledge of subject matter</li>
+        <li>Communicates with confidence</li>
+      </ul>
+      <h4>Weakness</h4>
+      <ul>
+        <li>The students were doing sports competition on campus. This potentially hindered their ability to fully concentrate and participate in the lesson.</li>
+      </ul>
+      <h4>Innovative Solutions</h4>
+      <p>Upon reflecting on the lesson by filling the reflection log form, it was obvious that I had to devise techniques to make the lesson much better. I then took the following innovative measures:</p>
+      <ul>
+        <li>I divided the students into smaller groups and then took each group through the lesson one after the other while I gave the others some tasks to execute. This was to ensure that each student concentrated during the lesson, especially when solving case studies.</li>
+      </ul>
+      <h4>Lesson and Insight Gained</h4>
+      <p>From the experiences and analysis of what I went through in this lesson, a lot of valuable lessons came out clearly for me to learn as a teacher. I learnt the following:</p>
+      <ul>
+        <li>The size of the class or the number of students in a class plays a vital role when it comes to understanding of lesson because the larger the size, the more students misbehave and hence it is difficult for the teacher to control the class, especially during demonstration. On the other hand, if the number of students is not too large, it's easier for a teacher to control the class.</li>
+      </ul>
+      <h4>Conclusion</h4>
+      <p>From the discussion above, teaching can be no more or less than a reflective process if genuine and meaningful teaching is to take place. Basically, the more a teacher reflects, the better his or her teaching becomes. It is my firm belief that every teacher needs to be reflective in order to identify his or her strengths and weaknesses in lesson delivery. That will enable them to correct the weaknesses promptly and accordingly to suit a particular topic and level of learners.</p>
+    </section>
+    <!-- LESSONS -->
+    <section id="lessons" class="container section">
+      <h2>Lessons</h2>
+      <h3>Computer Hardware Portfolio Lesson</h3>
+      <p><strong>Introduction</strong><br>
+        Computer hardware refers to the physical components of a computer system. Understanding computer hardware is essential for building, maintaining, and troubleshooting computers.
+      </p>
+      <h4>Key Components</h4>
+      <ol>
+        <li><strong>Central Processing Unit (CPU):</strong> The brain of the computer, responsible for executing instructions.</li>
+        <li><strong>Motherboard:</strong> The main circuit board connecting all hardware components.</li>
+        <li><strong>Memory (RAM):</strong> Temporary storage for data and applications.</li>
+        <li><strong>Storage Drive:</strong> Permanent storage for data, programs, and operating systems (e.g., Hard Disk Drive (HDD), Solid-State Drive (SSD)).</li>
+        <li><strong>Power Supply:</strong> Converts AC power to DC power for the computer's components.</li>
+        <li><strong>Graphics Card:</strong> Controls the output display and handles graphics processing.</li>
+        <li><strong>Case:</strong> The outer casing of the computer that houses all the components.</li>
+      </ol>
+      <h4>Types of Computer Hardware</h4>
+      <ol>
+        <li><strong>Input Devices:</strong> Keyboard, mouse, scanner, etc.</li>
+        <li><strong>Output Devices:</strong> Monitor, speakers, printer, etc.</li>
+        <li><strong>Peripheral Devices:</strong> External devices that enhance computer functionality (e.g., USB drives, webcams).</li>
+      </ol>
+      <h4>Importance of Computer Hardware</h4>
+      <ol>
+        <li><strong>Performance:</strong> Hardware components determine the computer's speed, efficiency, and capabilities.</li>
+        <li><strong>Upgradeability:</strong> Upgrading hardware components can extend the life of a computer and improve performance.</li>
+        <li><strong>Troubleshooting:</strong> Understanding hardware helps diagnose and resolve technical issues.</li>
+      </ol>
+      <h4>Real-World Applications</h4>
+      <ol>
+        <li><strong>Gaming PCs:</strong> Custom-built computers with high-performance hardware for gaming.</li>
+        <li><strong>Servers:</strong> Powerful computers that manage and store data for networks.</li>
+        <li><strong>Embedded Systems:</strong> Specialized computers integrated into devices (e.g., traffic lights, microwaves).</li>
+      </ol>
+      <p><strong>Conclusion</strong><br>
+        Computer hardware is the foundation of modern computing. Understanding the different components, types, and importance of hardware is crucial for building, maintaining, and troubleshooting computers.
+      </p>
+    </section>
+    <!-- MEDIA -->
+    <section id="media" class="container section" style="background-color:#f5faff;">
+      <h2 style="color:#1769aa;">Pictures/Videos</h2>
+      <h3 style="color:#1769aa;">Intern at School</h3>
+      <div class="media-gallery"></div>
+      <h3 style="color:#1769aa;">Extra Curricular Activities</h3>
+      <div class="media-gallery"></div>
+      <h3 style="color:#1769aa;">Invigilation</h3>
+      <div class="media-gallery"></div>
+      <h3 style="color:#1769aa;">Exercises and Exams Questions</h3>
+      <div class="media-gallery"></div>
+      <h3 style="color:#1769aa;">Intern with Student</h3>
+      <div class="media-gallery"></div>
+    </section>
+    <!-- PROJECTS -->
+    <section id="projects" class="container section">
+      <h2>Projects</h2>
+      <div class="projects-list">
+        <div class="project-card">
+          <h3>Project One</h3>
+          <p>Short description of your project.</p>
+          <a href="#" target="_blank">View Project</a>
+        </div>
+        <div class="project-card">
+          <h3>Project Two</h3>
+          <p>Short description of your project.</p>
+          <a href="#" target="_blank">View Project</a>
+        </div>
+        <!-- Add more projects as needed -->
+      </div>
+    </section>
+    <!-- CONTACT -->
+    <section id="contact" class="container section">
+      <h2>Contact</h2>
+      <p>Email me at: <a href="mailto:juliuskwofie1234@gmail.com">juliuskwofie1234@gmail.com</a></p>
+      <p>Mobile: +233 0541264602</p>
+    </section>
+  </main>
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 Julius Kwofie. All rights reserved.</p>
+    </div>
+  </footer>
+  <script>
+    // SPA navigation
+    const navBtns = document.querySelectorAll('.nav-btn');
+    const sections = document.querySelectorAll('.section');
+    function showSection(id) {
+      sections.forEach(sec => {
+        if(sec.id === id) sec.classList.add('active');
+        else sec.classList.remove('active');
+      });
+      navBtns.forEach(btn => {
+        if(btn.dataset.section === id) btn.classList.add('active');
+        else btn.classList.remove('active');
+      });
+      // scroll to top on navigation
+      window.scrollTo({top: 0, behavior: 'smooth'});
+    }
+    navBtns.forEach(btn => {
+      btn.onclick = () => showSection(btn.dataset.section);
+    });
+    // Allow hero CTA to open projects
+    document.querySelector('.cta-btn').onclick = function(e) {
+      e.preventDefault();
+      showSection('projects');
+    };
+  </script>
+</body>
+</html>
